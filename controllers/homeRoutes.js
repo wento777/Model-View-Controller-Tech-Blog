@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const sequelize = require('../config/connection');
 const { Post, User, Comment } = require('../models');
+const  isAuth  = require("../utils/auth");
+
 
 // I have 3 routes that I'm accounting for
 // one is just /, i.e. home
@@ -13,14 +15,33 @@ router.get("/", async (req, res) => {
   // Send the rendered Handlebars.js template back as the response
   // Find all the existing blogposts AND then
   // render your homepage view
+  try {
+    const postData = await Post.findAll({
+        include: [{
+            model: User,
+            attributes: ["name"]
+        }]
+    });
 
-//   Post.findAll({
+    const posts = postData.map((post) =>
+        post.get({ plain: true })
+    );
 
-//   }).then()
-
-  res.render("homepage", { blogPosts, loggedIn: req.session.loggedIn});
+    res.render("homepage", {
+        posts,
+        loggedIn: req.session.loggedIn
+    });
+} catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+}
 });
 
+
+
+
+
+ 
 // GET /login
 router.get("/login", async (req, res) => {
     // if a session exists, redirect to the homepage
@@ -37,7 +58,40 @@ router.get("/login", async (req, res) => {
 // GET /post/:id
 router.get("/post/:id", async (req, res) => {
   // Send the rendered Handlebars.js template back as the response
-  res.render("post", {});
+  if (req.session.loggedIn = false) {
+    res.redirect("/login")
+} else {
+    try {
+        const postData = await Post.findByPk(req.params.id, {
+            include: [
+                {
+                    model: User,
+                    attributes: ["name"]
+                },
+                {
+                    model: Comment,
+                    include: {
+                        model: User,
+                        attributes: ["name"]
+                    }
+                },
+            ],
+        });
+
+        if (postData) {
+            const post = postData.get({ plain: true });
+            res.render("viewpost", {
+                post,
+                loggedIn: req.session.loggedIn
+            });
+        } else {
+            res.status(404).json({ message: "No post found with this id" });
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+}
 });
 
 module.exports = router;
