@@ -126,11 +126,14 @@ node index.js
 
   # This project has been deployed to GitHub, here is the link:
 
-  * 
+  * https://github.com/wento777/Model-View-Controller-Tech-Blog
 
 
 
   # Team-Profile-Generator-OOP Screenshots
+  
+  ![Screenshot (19)](https://user-images.githubusercontent.com/70625665/230795160-1bfe0ba5-03f6-4b6f-a85a-76de78bbb6f7.png)
+
 
  
 
