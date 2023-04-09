@@ -1,20 +1,36 @@
-const router = require("express").Router();
-const sequelize = require('../config/connection');
+const router = require('express').Router();
 const { Post, User, Comment } = require('../models');
-const  isAuth  = require("../utils/auth");
+const  isAuth  = require('../utils/auth');
 
 
-// I have 3 routes that I'm accounting for
-// one is just /, i.e. home
-// another is /login
-// and the last one is /post/:id
-// these are all HTTP GET routes
 
-// GET /
-router.get("/", async (req, res) => {
-  // Send the rendered Handlebars.js template back as the response
-  // Find all the existing blogposts AND then
-  // render your homepage view
+
+
+
+ 
+// GET /login
+router.get("/login", async (req, res) => {
+    // if a session exists, redirect to the homepage
+    // otherwise render the login view
+    if(req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
+    // if a session doesn't exist, well then the
+    // user needs to login, so present the login view
+    res.render('login');
+});
+
+
+
+// GET post/
+router.get('/', isAuth, async (req, res) => {
+
+    if (!req.session.logged_in) {
+        res.redirect('/');
+        return;
+      }
+  
   try {
     const postData = await Post.findAll({
         include: [{
@@ -42,18 +58,18 @@ router.get("/", async (req, res) => {
 
 
  
-// GET /login
-router.get("/login", async (req, res) => {
-    // if a session exists, redirect to the homepage
-    // otherwise render the login view
-    if(req.session.loggedIn) {
-        res.redirect('/');
-        return;
-    }
-    // if a session doesn't exist, well then the
-    // user needs to login, so present the login view
-    res.render('login');
-});
+// // GET /login
+// router.get("/login", async (req, res) => {
+//     // if a session exists, redirect to the homepage
+//     // otherwise render the login view
+//     if(req.session.loggedIn) {
+//         res.redirect('/');
+//         return;
+//     }
+//     // if a session doesn't exist, well then the
+//     // user needs to login, so present the login view
+//     res.render('login');
+// });
 
 // GET /post/:id
 router.get("/post/:id", async (req, res) => {

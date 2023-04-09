@@ -1,4 +1,9 @@
-
+const titleEl = document.querySelector("#title");
+const contentEl = document.querySelector("#content");
+const createLink = document.querySelector("#createPost");
+const cancelBtn = document.querySelector("#cancelPost");
+const updateBtn = document.querySelector("#updatePost");
+const deleteBtn = document.querySelector("#deletePost");
 
 const cancelPostHandler = async (event) => {
     event.preventDefault();

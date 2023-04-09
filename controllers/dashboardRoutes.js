@@ -1,8 +1,10 @@
 const router = require("express").Router();
+const sequelize = require('../config/connection');
 const { User, Post } = require("../models");
 const isAuth = require("../utils/auth");
 
-// get all posts for a user
+
+
 router.get("/", async (req, res) => {
     try {
         const postData = await Post.findAll({
@@ -21,7 +23,7 @@ router.get("/", async (req, res) => {
 });
 
 
-// insert new post
+
 router.post("/post", isAuth, async (req, res) => {
     try {
         const postData = await Post.create({
@@ -40,7 +42,7 @@ router.post("/post", isAuth, async (req, res) => {
     }
 });
 
-// update a post by id
+
 router.put("/post/:id",isAuth, async (req, res) => {
     try {
         const postData = await Post.update(
@@ -60,7 +62,7 @@ router.put("/post/:id",isAuth, async (req, res) => {
     }
 });
 
-// delete a post by id
+
 router.delete("/post/:id",isAuth, async (req, res) => {
     try {
         const postData = await Post.destroy({ where: { id: req.params.id } });
@@ -75,7 +77,7 @@ router.delete("/post/:id",isAuth, async (req, res) => {
 });
 
 
-// get existing post for edit by id
+
 router.get("/post/:id",isAuth, async (req, res) => {
     try {
         const postData = await Post.findOne({
