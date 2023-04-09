@@ -38,38 +38,31 @@
 
   - In order to install inquirer, i used npm i inquirer@8.2.4.
 
-  - The application will be invoked by using the following command: 'node index.js'.
+  - The application will be deployed by using the following command: 'npm start'.
+
 
 
 ## Usage
 
   - This Challenge will combine many of the skills you’ve learned over the first ten weeks of this course. To help you get started, we’ve provided some guidelines in addition to the User Story and Acceptance Criteria.
 
-  - Your application should use JestLinks to an external site. for running the unit tests and InquirerLinks to an external site. for collecting input from the user. The application will be invoked by using the following command:node index.js
+  - Your application’s folder structure must follow the Model-View-Controller paradigm. You’ll need to use the express-handlebarsLinks to an external site. package to use Handlebars.js for your Views, use the MySQL2Links to an external site. and SequelizeLinks to an external site. packages to connect to a MySQL database for your Models, and create an Express.js API for your Controllers.
 
-  - It is recommended that you start with a directory structure that looks like this:
+  - You’ll also need the dotenv packageLinks to an external site. to use environment variables, the bcrypt packageLinks to an external site. to hash passwords, and the express-sessionLinks to an external site. and connect-session-sequelizeLinks to an external site. packages to add authentication.
 
-.
-├── __tests__/             //jest tests
-│   ├── Employee.test.js
-│   ├── Engineer.test.js
-│   ├── Intern.test.js
-│   └── Manager.test.js
-├── dist/                  // rendered output (HTML) and CSS style sheet      
-├── lib/                   // classes
-├── src/                   // template helper code 
-├── .gitignore             // indicates which folders and files Git should ignore
-├── index.js               // runs the application
-└── package.json           
-
-  -  Revisit 2.2.4: Screencastify Tutorial in Module 2 of the prework as a refresher on how to record video from your computer.
+  - The express-sessionLinks to an external site. package stores the session data on the client in a cookie. When you are idle on the site for more than a set time, the cookie will expire and you will be required to log in again to start a new session. This is the default behavior and you do not have to do anything to your application other than implement the npm package.
 
   - Make sure that you remove dist from the .gitignore file so that Git will track this folder and include it when you push up to your application's repository.
   
 
 
+
+
 ## User Story
 
+AS A developer who writes about tech
+I WANT a CMS-style blog site
+SO THAT I can publish articles, blog posts, and my thoughts and opinions
 
 
 
