@@ -4,7 +4,7 @@
 
  ## Description 
 
-- This project was designed as a homework assignment for KU coding bootcamp in Module 14 Challenge, Model-View-Controller (MVC) Challenge: Tech Blog
+- This project was designed as a homework assignment for KU coding bootcamp in Module 14 Challenge, Model-View-Controller (MVC) Challenge: Tech Blog.
 
 -  Writing about tech can be just as important as making it.
 
