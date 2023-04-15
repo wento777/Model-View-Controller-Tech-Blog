@@ -24,12 +24,12 @@ router.get("/login", async (req, res) => {
 
 
 // GET post/
-router.get('/', isAuth, async (req, res) => {
+router.get('/', async (req, res) => {
 
-    if (!req.session.logged_in) {
-        res.redirect('/');
-        return;
-      }
+    // if (!req.session.logged_in) {
+    //     res.redirect('/');
+    //     return;
+    //   }
   
   try {
     const postData = await Post.findAll({
@@ -74,9 +74,9 @@ router.get('/', isAuth, async (req, res) => {
 // GET /post/:id
 router.get("/post/:id", async (req, res) => {
   // Send the rendered Handlebars.js template back as the response
-  if (req.session.loggedIn = false) {
-    res.redirect("/login")
-} else {
+//   if (req.session.loggedIn = false) {
+//     res.redirect("/login")
+// } else {
     try {
         const postData = await Post.findByPk(req.params.id, {
             include: [
@@ -108,6 +108,6 @@ router.get("/post/:id", async (req, res) => {
         res.status(500).json(err);
     }
 }
-});
+);
 
 module.exports = router;

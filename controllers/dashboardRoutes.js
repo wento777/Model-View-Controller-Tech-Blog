@@ -5,18 +5,18 @@ const isAuth = require("../utils/auth");
 
 
 
-router.get("/", async (req, res) => {
+router.get("/", isAuth, async (req, res) => {
     try {
         const postData = await Post.findAll({
             where: { user_id: req.session.user_id },
             attributes: ["id", "title", "content", "date_created"],
-            include: [{
-                model: User,
-                attributes: ["name"]
-            }]
+            // include: [{
+            //     model: User,
+            //     attributes: ["name"]
+            // }]
         });
         const posts = postData.map((post) => post.get({ plain: true }));
-        res.render("dashboard", { posts, loggedIn: req.session.loggedIn });
+        res.render("userpage", { posts, loggedIn: req.session.loggedIn });
     } catch (err) {
         res.status(500).json(err);
     }
@@ -24,23 +24,29 @@ router.get("/", async (req, res) => {
 
 
 
-router.post("/post", isAuth, async (req, res) => {
-    try {
-        const postData = await Post.create({
-            title: req.body.title,
-            content: req.body.content,
-            user_id: req.session.user_id
-        });
-        const post = postData.get({ plain: true });
-        if (postData) {
-            res.status(201).json({ id: post.id });
-        } else {
-            res.status(500).json({ message: "There was an error while creating the post" });
-        }
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
+// router.post("/post", isAuth, async (req, res) => {
+//     try {
+//         const postData = await Post.create({
+//             title: req.body.title,
+//             content: req.body.content,
+//             user_id: req.session.user_id
+//         });
+//         const post = postData.get({ plain: true });
+//         if (postData) {
+//             res.status(201).json({ id: post.id });
+//         } else {
+//             res.status(500).json({ message: "There was an error while creating the post" });
+//         }
+//     } catch (err) {
+//         res.status(500).json(err);
+//     }
+// });
+
+
+router.get("/newpost", isAuth, async (req, res) => {
+    res.render('newpost')
+}
+)
 
 
 router.put("/post/:id",isAuth, async (req, res) => {
