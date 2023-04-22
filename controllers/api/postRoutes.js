@@ -17,6 +17,7 @@ router.post('/', async (req, res) => {
         ...req.body,
         user_id: req.session.user_id,
       });
+      
   
       res.status(200).json(newPost);
     } catch (err) {
