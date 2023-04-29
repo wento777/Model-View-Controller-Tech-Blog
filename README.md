@@ -104,7 +104,14 @@ node index.js
 
   # Team-Profile-Generator-OOP Screenshots
   
+  ![image](https://user-images.githubusercontent.com/70625665/235286295-e2c3316c-ef87-49cb-a7eb-5f5dd0d980e3.png)
+  ![Screenshot (74)](https://user-images.githubusercontent.com/70625665/235286304-f7a78a5a-ff07-40c1-807e-abfe05864864.png)
 
+  
+
+  # The URL of the functional, deployed application.
+  
+https://model-view-controller-tech-blo.herokuapp.com/ 
 
 
  
