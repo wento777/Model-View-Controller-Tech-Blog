@@ -121,7 +121,7 @@ THEN I am able to view comments but I am prompted to log in again before I can a
 
   # This project has been deployed to GitHub, here is the link:
 
-  * 
+  * https://github.com/wento777/Model-View-Controller-Tech-Blog
 
   # Team-Profile-Generator-OOP Screenshots
   
